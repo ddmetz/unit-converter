@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.unitconverter'
+    namespace 'com.dmetz.unitconverter'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.example.unitconverter"
+        applicationId "com.dmetz.unitconverter"
         minSdk 24
         targetSdk 34
         versionCode 1
