@@ -16,6 +16,10 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -25,6 +29,7 @@ import com.dmetz.unitconverter.ui.converter.ConversionExpressionText
 import com.dmetz.unitconverter.ui.converter.ConverterKeyboard
 import com.dmetz.unitconverter.ui.converter.ConverterState
 import com.dmetz.unitconverter.ui.converter.ConverterViewModel
+import com.dmetz.unitconverter.ui.menu.MainDropdownMenu
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
@@ -52,13 +57,20 @@ fun MainScreen(
                     .fillMaxWidth()
                     .background(MaterialTheme.colorScheme.surfaceColorAtElevation(3.dp))
             ) {
+                var menuExpanded by remember { mutableStateOf(false) }
                 IconButton(
-                    onClick = onClickSettings
+                    onClick = { menuExpanded = true }
                 ) {
                     Icon(
                         Icons.Filled.MoreVert,
                         contentDescription = "Options",
                         tint = MaterialTheme.colorScheme.onBackground
+                    )
+                    MainDropdownMenu(
+                        expanded = menuExpanded,
+                        onDismissRequest = { menuExpanded = false },
+                        onClickSettings = onClickSettings,
+                        onClickAbout = { } // TODO
                     )
                 }
             }
